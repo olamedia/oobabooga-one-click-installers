@@ -4,14 +4,14 @@ cd /D "%~dp0"
 
 echo "%CD%"| findstr /C:" " >nul && echo This script relies on Miniconda which can not be silently installed under a path with spaces. && goto end
 
-set PATH=%PATH%;%SystemRoot%\system32
-
 @rem config
 set INSTALL_DIR=%cd%\installer_files
 set CONDA_ROOT_PREFIX=%cd%\installer_files\conda
 set INSTALL_ENV_DIR=%cd%\installer_files\env
 set MINICONDA_DOWNLOAD_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_23.1.0-1-Windows-x86_64.exe
 set conda_exists=F
+
+set PATH=%PATH%;%SystemRoot%\system32;%CONDA_ROOT_PREFIX%\condabin;%CONDA_ROOT_PREFIX%\Scripts
 
 @rem figure out whether git and conda needs to be installed
 call "%CONDA_ROOT_PREFIX%\_conda.exe" --version >nul 2>&1
